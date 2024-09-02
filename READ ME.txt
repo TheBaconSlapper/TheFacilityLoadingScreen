@@ -1,0 +1,181 @@
+In This Mod You Will Find The Contents For A Loading Screen, Your Instructions To Get Set Up Is -->
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+1.) Editing The Loading Screen Slideshow
+
+To Edit The Loading Screen Slide Show: 
+
+Save Your .png Images As 1920x1080 Dimensions
+Open Workbench In DayZ Tools
+Options - Three Dots - Find Drive/Folder/Space You Have Your Images In --> Might Be Best If You Have Them In The Actual Mod Folder In Here First
+Right Click File - Resource The File - Create .edds File - Delete PNG Image
+You Can Have As Many As You Want But For Me I Chose 5 Images
+
+ONLY CHANGE THE ORIGINAL PATHWAY UNLESS YOUR DELETING ANYTHING
+
+ "TheFacilityLoadingScreen\\data\\Loadingscreen.edds"
+
+ "YourLoadingscreenName\\data\\Loadingscreen.edds",
+
+P.S.
+Hints When Loading In And Out Of The Server And While I Cue Are Disabled
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+2.) Editing The Main Menu Music
+
+Find Soundtrack You Want
+Drag To music Folder
+Rename "MainMenu"
+ALWAYS MAKE SURE THIS IS A OGG FILE - ANYTHING ELSE WONT WORK
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+3.) Changing In-game Hints When On ESC Menu
+
+If You Wanna Change The In-game Hints I.E. The Same Pressable Hints Menu When Your In DayZ Either Fill Out The JSON File Before You Pack The Mod
+Or Goto Profiles/Instance Folder And Fill The JSON File Out There Instead
+
+NOTE!
+
+THIS WILL ONLY CHANGE THE ESC MENU HINTS
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+
+4.) Re-enabling Hints When Logging In - Logging Out Or In Que Process - OPTIONAL!
+
+If You For Some Weird Reason Would Like To Renable The "Vanilla" Hints When Logging In And Out Goto -->
+
+scripts/3_game - Open File: LoadingScreen.c - Enable All Panel Widgets By Setting "false" To "true"
+
+E.G.
+
+override void Show()
+    {        
+        string preel = RandomLoadingScreenArray.GetRandomElement();
+        m_ImageWidgetBackground.LoadMaskTexture("LoadingScreens\\data\\ls_mask.paa");
+        m_ImageWidgetBackground.LoadImageFile(0, preel);   
+        m_ImageLogoMid.Show(false);
+        m_ImageLogoCorner.Show(false);            
+        m_ModdedWarning.Show(false); 
+        
+        Widget panel = m_WidgetRoot.FindAnyWidget("BottomPanel");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("hint_frame");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("hintIcon");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesRightImage");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesImageRight");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesLeftImage");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesImageLeft");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("HeadlineLabel");
+        if (panel) panel.Show(false);
+
+        panel = m_WidgetRoot.FindAnyWidget("HintDescLabel");
+        if (panel) panel.Show(false);
+
+        super.Show();
+    }
+}
+
+TO
+
+override void Show()
+    {        
+        string preel = RandomLoadingScreenArray.GetRandomElement();
+        m_ImageWidgetBackground.LoadMaskTexture("LoadingScreens\\data\\ls_mask.paa");
+        m_ImageWidgetBackground.LoadImageFile(0, preel);   
+        m_ImageLogoMid.Show(false);
+        m_ImageLogoCorner.Show(false);            
+        m_ModdedWarning.Show(false); 
+        
+        Widget panel = m_WidgetRoot.FindAnyWidget("BottomPanel");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("hint_frame");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("hintIcon");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesRightImage");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesImageRight");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesLeftImage");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("LinesImageLeft");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("HeadlineLabel");
+        if (panel) panel.Show(true);
+
+        panel = m_WidgetRoot.FindAnyWidget("HintDescLabel");
+        if (panel) panel.Show(true);
+
+        super.Show();
+    }
+}
+
+ONLY ONES SHOWN IN EXAMPLE SHOULE BE ACTIVE ANYTHING ELSE COULD BREAK THE MOD!
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+5.)Constants.c
+
+Goto scripts/3_Game - Constants.c
+
+When Open You Will See:
+
+static const string MMpath = "TheFacilityLoadingScreen/gui/MainMenu.layout";
+static const string MMip = "192.168.1.158";
+static const int MMport = 2302;
+static const string MMdiscord = "https";
+static const string MMvk = "https";
+static const string MMtwitter = "https";
+
+Lets Learn What Everything Is
+
+static const string MMpath = "TheFacilityLoadingScreen/gui/MainMenu.layout"; <---- YOUR PATH TO THE MAINMENU LAYOUT
+static const string MMip = "192.168.1.158"; <--- YOUR SERVER IP (This Can Be Public Or LAN Test)
+static const int MMport = 2302; <--- YOUR SERVER PORT NUMBER
+static const string MMdiscord = "https"; <--- YOUR SERVER DISCORD LINK FOR MAIN MENU BUTTON PRESS
+static const string MMvk = "https"; <--- VK LINK FOR YOUR SERVER
+static const string MMtwitter = "https"; <--- TWITTER/X LINK TO YOUR SERVERS SOCIAL PAGE
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+
+6.)UIHintPanel - OPTIONAL!
+
+Goto: scripts/3_Game/gui/hints/hints - uihintpanel.c
+Change The .json File To Whatever Name You Want Your Json File To Be Named Or Keep It The Same --->
+
+YOUR LOOKING FOR:
+
+protected const string 			m_DataPath			= "TheFacilityLoadingScreen/scripts/data/hints.json";
