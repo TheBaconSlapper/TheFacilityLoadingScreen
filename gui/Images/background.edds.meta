@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{F67242B59D6EDF37}TheFacilityLoadingScreen/gui/Images/background.edds"
+ Author "thebeast"
+ ChangeDate -1685294814
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "background.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+  PNGResourceClass LINUX : PC {
+  }
+ }
+}
